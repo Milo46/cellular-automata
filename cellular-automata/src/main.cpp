@@ -1,34 +1,32 @@
 #include <iostream>
 #include <vector>
 
-#include "StaticArray.hpp"
+#include "automata/SimulationSpace.hpp"
 
-namespace CAConstants
-{
-    constexpr size_t c_ZeroDimensional  = 0u;
-    constexpr size_t c_OneDimensional   = 1u;
-    constexpr size_t c_TwoDimensional   = 2u;
-    constexpr size_t c_ThreeDimensional = 3u;
-    constexpr size_t c_FourDimensional  = 4u;
-}
-
-template<typename _Ty, size_t _Dimensions>
-class CADataStatic
-{
-public:
-    using Type = _Ty;
-    
-public:
-    CADataStatic(size_t size)
-        : m_Data(_Dimensions * size) {}
-
-private:
-    StaticArray<_Ty> m_Data;
-};
+#include <SFML/Graphics.hpp>
 
 int main(int argc, char** argv)
 {
-    
+    sf::RenderWindow window(sf::VideoMode(800u, 600u), "SFML Window!");
+    sf::Event eventHandle{};
+
+    sf::RectangleShape rectangle{};
+    rectangle.setSize({ 100.0f, 100.0f });
+    rectangle.setPosition({ 100.0f, 100.0f });
+    rectangle.setFillColor(sf::Color::Green);
+
+    while (window.isOpen())
+    {
+        while (window.pollEvent(eventHandle))
+        {
+            if (eventHandle.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.draw(rectangle);
+        window.display();
+    }
 
     return EXIT_SUCCESS;
 }

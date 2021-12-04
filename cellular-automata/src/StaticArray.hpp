@@ -1,5 +1,4 @@
-#ifndef STATIC_ARRAY_HPP_INCLUDED
-#define STATIC_ARRAY_HPP_INCLUDED
+#pragma once
 
 #include <initializer_list>
 
@@ -78,9 +77,15 @@ private:
     void _Deallocate() const noexcept;
 
 private:
-    mutable _Ty* m_Data       = nullptr;
-    mutable size_t m_Size     = 0u;
-    mutable size_t m_Capacity = 0u;
+    mutable _Ty* m_Data   = nullptr;
+    mutable size_t m_Size = 0u;
+
+    //
+    // NOTE(milo): make use of capacity variable in the future
+    // in order to reduce amount of allocating memory calls.
+    // 
+    // mutable size_t m_Capacity = 0u;
+    //
 };
 
 template<typename _Ty>
@@ -98,8 +103,11 @@ inline StaticArray<_Ty>::StaticArray(const std::initializer_list<_Ty>& list)
 template<typename _Ty>
 inline StaticArray<_Ty>::StaticArray(const StaticArray& other)
 {
-    _Deallocate();
-    _Allocate(other.m_Size);
+    if (m_Size != other.m_Size)
+    {
+        _Deallocate();
+        _Allocate(other.m_Size);
+    }
 
     for (size_t i = 0u; i < other.m_Size; ++i)
     {
@@ -122,8 +130,11 @@ inline StaticArray<_Ty>::StaticArray(StaticArray&& other) noexcept
 template<typename _Ty>
 inline StaticArray<_Ty>& StaticArray<_Ty>::operator=(const StaticArray& other)
 {
-    _Deallocate();
-    _Allocate(other.m_Size);
+    if (m_Size != other.m_Size)
+    {
+        _Deallocate();
+        _Allocate(other.m_Size);
+    }
 
     for (size_t i = 0u; i < other.m_Size; ++i)
     {
@@ -160,6 +171,8 @@ inline const _Ty* StaticArray<_Ty>::GetData() const noexcept
 template<typename _Ty>
 inline void StaticArray<_Ty>::_Allocate(size_t size) const noexcept
 {
+    std::cout << "StaticArray: allocating new memory!\n";
+
     m_Size = size;
     m_Data = new Type[m_Size];
 }
@@ -179,7 +192,8 @@ inline void StaticArray<_Ty>::_Copy(const StaticArray& other) const noexcept
 template<typename _Ty>
 inline void StaticArray<_Ty>::_Deallocate() const noexcept
 {
+    std::cout << "StaticArray: freeing old memory!\n";
+
     delete[] m_Data;
 }
 
-#endif

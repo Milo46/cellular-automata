@@ -1,6 +1,12 @@
 workspace "cellular-automata"
-    architecture "x64"
     startproject "cellular-automata"
+    systemversion "latest"
+    system "windows"
+
+    defines {
+        "WINDOWS",
+        "GAME_PLATFORM_WINDOWS"
+    }
 
     configurations {
         "Debug",
@@ -10,8 +16,6 @@ workspace "cellular-automata"
     platforms {
         "Win32",
         "Win64",
-        "Unix",
-        "Mac"
     }
 
     filter { "configurations:Debug" }
@@ -23,23 +27,12 @@ workspace "cellular-automata"
         optimize "on"
 
     filter { "platforms:Win32" }
-        system "windows"
-        defines { "WINDOWS", "WINDOWS32" }
+        defines { "WINDOWS32" }
         architecture "x86"
-        systemversion "latest"
 
     filter { "platforms:Win64" }
-        system "windows"
-        defines { "WINDOWS", "WINDOWS64" }
-        systemversion "latest"
-
-    filter { "platforms:Unix" }
-        system "linux"
-        defines { "LINUX" }
-
-    filter { "platforms:Mac" }
-        system "macosx"
-        defines { "MACOSX" }
+        defines { "WINDOWS64" }
+        architecture "x64"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
