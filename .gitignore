@@ -395,3 +395,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 # My own premake dependent folders
+bin-int/
