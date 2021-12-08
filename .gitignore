@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # My own premake dependent folders
 .bin-int/*
+*.recipe
+*.idb
