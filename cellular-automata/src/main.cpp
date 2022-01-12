@@ -1,20 +1,33 @@
 #include <iostream>
 #include <vector>
 
-#include "automata/SimulationSpace.hpp"
-
 #include "framework/Application.hpp"
 #include "framework/ArgumentsStorage.hpp"
 
-#include "utility/Optimalizations.hpp"
+#include "automata/SimulationSpace.hpp"
+#include "automata/AutomataApplication.hpp"
 
 #include <SFML/Graphics.hpp>
 
+#define NEW new
+#define DELETE delete
+
+Framework::Application* GetApplication()
+{
+    return NEW AutomataApplication();
+}
+
 int main(int argc, char** argv)
 {
-    Utility::IO_Optimalization();
+    //auto* application = GetApplication();
 
-    auto arguments = Framework::ArgumentsStorage(argc, argv);
+    AutomataApplication* application = NEW AutomataApplication();
+
+    application->Run();
+
+    DELETE application;
+
+    /*auto arguments = Framework::ArgumentsStorage(argc, argv);
 
     for (size_t i = 0u; i < arguments.GetSize(); ++i)
         std::cout << i << ": " << arguments[i] << '\n';
@@ -23,7 +36,7 @@ int main(int argc, char** argv)
     {
         static size_t i = 0u;
         std::cout << i++ << ": " << it << '\n';
-    }
+    }*/
 
     /*sf::RenderWindow window({800u, 600u}, "SFML Window!");
     sf::Event eventHandle{};
