@@ -1,14 +1,36 @@
 #pragma once
 
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 
-class TextBox
+#include <string>
+
+class TextBox : public sf::Drawable
 {
 public:
     TextBox() = default;
 
-    
+    void SetFont(const sf::Font& font);
+    void SetText(const std::string& text);
+    void SetSize(const sf::Vector2f& size);
+    void SetPosition(const sf::Vector2f& position);
+    void SetOutlineColor(const sf::Color& color);
+    void SetOutlineThickness(float thickness);
+
+    const sf::Font& GetFont() const;
+    const std::string& GetText() const;
+    const sf::Vector2f& GetSize() const;
+    const sf::Vector2f& GetPosition() const;
+    const sf::Color& GetOutlineColor() const;
+    float GetOutlineThickness() const;
+
+protected:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+private:
+    void UpdateTextPosition();
 
 private:
     sf::Text m_Text;

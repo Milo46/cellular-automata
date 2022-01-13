@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="automata">
+      <UniqueIdentifier>{A131AF45-8DFE-0951-B617-F8F8A2433FDF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{33827CC1-9FEC-3038-E82A-E2DD54D40E8D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="logger">
+      <UniqueIdentifier>{4507DF0B-31A9-09E2-1A64-1D3606A59032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{79DE5C48-E5BD-DBE3-EED5-66BA5A344245}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\StaticArray.hpp" />
+    <ClInclude Include="src\automata\AutomataApplication.hpp">
+      <Filter>automata</Filter>
+    </ClInclude>
+    <ClInclude Include="src\automata\SimulationSpace.hpp">
+      <Filter>automata</Filter>
+    </ClInclude>
+    <ClInclude Include="src\automata\TextBox.hpp">
+      <Filter>automata</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\Application.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\ArgumentsStorage.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\ResourceManager.hpp">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logger\Logger.hpp">
+      <Filter>logger</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\Optimalizations.hpp">
+      <Filter>utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\automata\AutomataApplication.cpp">
+      <Filter>automata</Filter>
+    </ClCompile>
+    <ClCompile Include="src\automata\TextBox.cpp">
+      <Filter>automata</Filter>
+    </ClCompile>
+    <ClCompile Include="src\framework\Application.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\framework\ArgumentsStorage.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\framework\ResourceManager.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logger\Logger.cpp">
+      <Filter>logger</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+</Project>

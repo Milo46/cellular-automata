@@ -4,6 +4,8 @@
 
 #include "logger/Logger.hpp"
 
+#include "TextBox.hpp"
+
 class AutomataApplication : public Framework::Application
 {
 public:
@@ -25,7 +27,7 @@ protected:
 private:
     sf::View m_View;
     sf::Font m_Font;
-    sf::Text m_Text;
+    //sf::Text m_Text;
 
     sf::Vector2f m_ViewSpeed;
 
@@ -37,7 +39,9 @@ private:
 
 private:
     sf::RectangleShape m_Rectangle;
-    sf::RectangleShape m_WindowOutline;
+    //sf::RectangleShape m_WindowOutline;
+
+    TextBox m_WindowBox;
 
 private:
     Utility::Logger m_Logger;

@@ -6,7 +6,7 @@
 using std::operator""s;
 
 AutomataApplication::AutomataApplication()
-    : m_View(), m_Rectangle(), m_WindowOutline(), m_ViewSpeed(),
+    : m_View(), m_Rectangle(), /*m_WindowOutline(),*/ m_ViewSpeed(),
     m_Logger(Application::GetClientLogger())
 {
     const sf::Vector2f& fWindowSize = static_cast<sf::Vector2f>(Application::GetWindow().getSize());
@@ -17,9 +17,6 @@ AutomataApplication::AutomataApplication()
     if (!m_Font.loadFromFile("resources/fonts/Dosis-Light.otf"s))
         Application::GetClientLogger().Error("Failed to load the font!"s);
 
-    m_Text.setFont(m_Font);
-    m_Text.setString("m_Window");
-
     float ratio = m_View.getSize().x / m_View.getSize().y;
     m_ViewSpeed = { ratio * 100.0f, ratio * 100.0f };
 
@@ -27,14 +24,24 @@ AutomataApplication::AutomataApplication()
     m_Rectangle.setPosition({ 0.0f, 0.0f });
     m_Rectangle.setFillColor(sf::Color::Green);
 
-    m_WindowOutline.setSize(fWindowSize);
+    std::cout << "Running\n";
+
+    m_WindowBox.SetFont(m_Font);
+    m_WindowBox.SetText("m_Window");
+
+    /*m_WindowBox.SetSize(fWindowSize);
+    m_WindowBox.SetPosition({ 0.0f, 0.0f });
+    m_WindowBox.SetOutlineColor(sf::Color::Yellow);
+    m_WindowBox.SetOutlineThickness(1.0f);*/
+
+    /*m_WindowOutline.setSize(fWindowSize);
     m_WindowOutline.setPosition({ 0.0f, 0.0f });
     m_WindowOutline.setFillColor({ 0u, 0u, 0u, 0u});
     m_WindowOutline.setOutlineColor(sf::Color::Yellow);
     m_WindowOutline.setOutlineThickness(1.0f);
 
     m_Text.setPosition({ -m_WindowOutline.getOutlineThickness(),
-        -m_Text.getGlobalBounds().height * 1.5f - m_WindowOutline.getOutlineThickness() });
+        -m_Text.getGlobalBounds().height * 1.5f - m_WindowOutline.getOutlineThickness() });*/
 }
 
 void AutomataApplication::Update(float deltaTime)
@@ -58,8 +65,11 @@ void AutomataApplication::Render()
 
     Application::ClearScreen(sf::Color::Black);
     Application::Draw(m_Rectangle);
-    Application::Draw(m_WindowOutline);
-    Application::Draw(m_Text);
+
+    //Application::Draw(m_WindowOutline);
+
+    //Application::Draw(m_Text);
+    Application::Draw(m_WindowBox);
     Application::Display();
 }
 
