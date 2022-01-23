@@ -23,6 +23,7 @@ protected:
     // padding experimental
     virtual void EC_MouseButtonPressed(const sf::Event::MouseButtonEvent& mouseButton) override;
     virtual void EC_MouseButtonReleased(const sf::Event::MouseButtonEvent& mouseButton) override;
+    virtual void EC_MouseMoved(const sf::Event::MouseMoveEvent& mouseMove) override;
 
 private:
     sf::View m_View;
@@ -34,14 +35,18 @@ private:
     float m_ZoomFactor = 0.1f;
 
 private:
-    sf::Vector2i m_PaddingStart;
-    sf::Vector2i m_PaddingEnd;
+    sf::Vector2i m_PanningLast;
+    sf::Vector2i m_PanningCurrent;
+
+    bool m_PanningButtonPressed = false;
 
 private:
     sf::RectangleShape m_Rectangle;
     //sf::RectangleShape m_WindowOutline;
 
+    TextBox m_PlayerBox;
     TextBox m_WindowBox;
+    TextBox m_MouseBox;
 
 private:
     Utility::Logger m_Logger;
